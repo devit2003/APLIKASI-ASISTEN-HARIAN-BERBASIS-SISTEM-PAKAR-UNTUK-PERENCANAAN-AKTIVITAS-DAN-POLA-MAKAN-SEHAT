@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statistik Aktivitas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.dashboard-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #ffffff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+
+    nav.dashboard-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+      justify-content: center;
+    }
+
+    nav.dashboard-nav li {
+      display: inline;
+    }
+
+    nav.dashboard-nav .nav-link {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s ease;
+    }
+
+    nav.dashboard-nav .nav-link:hover {
+      color: #3498db;
+    }
+
+    nav.dashboard-nav .nav-link i {
+      margin-right: 6px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 100px auto 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    canvas {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar di atas -->
+  <nav class="dashboard-nav">
+    <ul>
+      <li><a href="/" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li><a href="/index" class="nav-link"><i class="fas fa-chart-line"></i> Prediksi</a></li>
+      <li><a href="/food" class="nav-link"><i class="fas fa-utensils"></i> Pola Makan</a></li>
+      <li><a href="/jadwal" class="nav-link"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+      <li><a href="/statistik" class="nav-link"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+      <li><a href="/about" class="nav-link"><i class="fas fa-users"></i> Tentang</a></li>
+    </ul>
+  </nav>
+
+  <!-- Konten utama -->
+  <div class="container">
+    <h2>📊 Statistik Aktivitas Harian</h2>
+    <canvas id="barChart"></canvas>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    // Contoh data aktivitas hasil dari jadwal
+    const aktivitas = [
+      "sarapan pagi", "belajar", "kerja", "kerja", "makan siang", 
+      "kerja", "olahraga", "nonton film", "tidur"
+    ];
+
+    // Hitung frekuensi aktivitas
+    const aktivitasCount = {};
+    aktivitas.forEach(act => {
+      aktivitasCount[act] = (aktivitasCount[act] || 0) + 1;
+    });
+
+    const labels = Object.keys(aktivitasCount);
+    const data = Object.values(aktivitasCount);
+    const colors = [
+      '#3498db', '#e74c3c', '#2ecc71', '#f39c12',
+      '#9b59b6', '#1abc9c', '#e67e22', '#34495e', '#95a5a6'
+    ];
+
+    // Bar Chart
+    new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Jumlah Aktivitas',
+          data: data,
+          backgroundColor: colors,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Jumlah'
+            }
+          }
+        }
+      }
+    });
+
+    // Pie Chart
+    new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Distribusi Aktivitas',
+          data: data,
+          backgroundColor: colors
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  </script>
+</body>
+</html>

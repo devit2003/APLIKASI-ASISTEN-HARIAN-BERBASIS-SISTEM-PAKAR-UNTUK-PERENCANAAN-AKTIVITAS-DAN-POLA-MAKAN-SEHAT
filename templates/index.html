@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProduktivitasAI - Prediksi Produktivitas Harian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-nav {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .dashboard-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dashboard-nav li {
+            display: inline;
+        }
+
+        .dashboard-nav .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .dashboard-nav .nav-link i {
+            margin-right: 6px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .result-card {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .prediction-value {
+            font-size: 2rem;
+            color: #27ae60;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .recommendations, .schedule {
+            margin-top: 20px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #bdc3c7;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .time-col {
+            width: 120px;
+            font-weight: 600;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav class="dashboard-nav">
+        <ul>
+            <li><a href="/" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="/index" class="nav-link"><i class="fas fa-chart-line"></i> Prediksi</a></li>
+            <li><a href="/food" class="nav-link"><i class="fas fa-utensils"></i> Pola Makan</a></li>
+            <li><a href="/jadwal" class="nav-link"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a href="/statistik" class="nav-link"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+            <li><a href="/about" class="nav-link"><i class="fas fa-users"></i> Tentang</a></li>
+        </ul>
+    </nav>
+
+    <!-- Container -->
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>HariMaksimal</h1>
+            </div>
+            <p class="subtitle">Hidup Lebih Terencana, Hati Lebih Tenang</p>
+        </header>
+
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-calculator"></i> Form Prediksi Produktivitas</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="jam_tidur"><i class="fas fa-moon"></i> Jam Tidur (jam)</label>
+                    <input type="number" id="jam_tidur" name="jam_tidur" min="0" max="24" step="0.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="jam_kerja"><i class="fas fa-briefcase"></i> Jam Kerja (jam)</label>
+                    <input type="number" id="jam_kerja" name="jam_kerja" min="0" max="24" step="0.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tingkat_stres"><i class="fas fa-brain"></i> Tingkat Stres</label>
+                    <select id="tingkat_stres" name="tingkat_stres" required>
+                        <option value="" disabled selected>Pilih tingkat stres</option>
+                        <option value="rendah">Rendah</option>
+                        <option value="sedang">Sedang</option>
+                        <option value="tinggi">Tinggi</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="aktivitas_lain"><i class="fas fa-running"></i> Aktivitas Lain</label>
+                    <select id="aktivitas_lain" name="aktivitas_lain" required>
+                        <option value="" disabled selected>Pilih aktivitas utama</option>
+                        <option value="sosial media">Sosial Media</option>
+                        <option value="baca buku">Baca Buku</option>
+                        <option value="game">Game</option>
+                        <option value="scrolling sosial media">Scrolling Sosial Media</option>
+                        <option value="olahraga">Olahraga</option>
+                        <option value="tidur siang">Tidur Siang</option>
+                        <option value="menonton film">Menonton Film</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">
+                    <i class="fas fa-chart-pie"></i> Prediksi Produktivitas
+                </button>
+            </form>
+        </div>
+
+        {% if prediction is not none %}
+        <div class="result-card show">
+            <h2 class="card-title"><i class="fas fa-chart-bar"></i> Hasil Prediksi</h2>
+            <div class="prediction-value">{{ prediction | round(2) }}%</div>
+
+            {% if rekomendasi %}
+            <div class="recommendations">
+                <h3 class="card-title"><i class="fas fa-lightbulb"></i> Rekomendasi</h3>
+                <ul>
+                    {% for r in rekomendasi %}
+                        <li><i class="fas fa-check-circle"></i> {{ r }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if jadwal %}
+            <div class="schedule">
+                <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Jadwal Harian yang Disarankan</h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Waktu</th>
+                            <th>Aktivitas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for waktu, aktivitas in jadwal %}
+                            <tr>
+                                <td class="time-col">{{ waktu }}</td>
+                                <td>{{ aktivitas }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tentang - HariMaksimal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f6fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav.dashboard-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
+        nav.dashboard-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav.dashboard-nav li {
+            display: inline;
+        }
+
+        nav.dashboard-nav .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+
+        nav.dashboard-nav .nav-link:hover {
+            color: #3498db;
+        }
+
+        nav.dashboard-nav .nav-link i {
+            margin-right: 6px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto 60px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #34495e;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .team-section {
+            margin-top: 40px;
+        }
+
+        .team-member {
+            margin-bottom: 20px;
+        }
+
+        .team-member i {
+            color: #3498db;
+            margin-right: 8px;
+        }
+
+        .devit-profile {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .devit-profile img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .devit-profile h3 {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <nav class="dashboard-nav">
+        <ul>
+            <li><a href="/" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="/index" class="nav-link"><i class="fas fa-chart-line"></i> Prediksi</a></li>
+            <li><a href="/food" class="nav-link"><i class="fas fa-utensils"></i> Pola Makan</a></li>
+            <li><a href="/jadwal" class="nav-link"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+            <li><a href="/statistik" class="nav-link"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+            <li><a href="/about" class="nav-link"><i class="fas fa-users"></i> Tentang</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="devit-profile">
+            <img src="{{ url_for('static', filename='img/devit.jpg') }}" alt="Foto Devit Saputra">
+            <h3>Devit Saputra</h3>
+        </div>
+
+        <h1><i class="fas fa-users"></i> Tentang Aplikasi</h1>
+        <p>
+            <strong>HariMaksimal</strong> adalah aplikasi berbasis AI yang dirancang untuk membantu kamu merencanakan hari dengan lebih produktif dan terstruktur.
+            Dengan prediksi produktivitas, saran aktivitas, dan fitur pembuatan jadwal otomatis, kamu bisa meraih hari yang lebih optimal, sehat, dan seimbang.
+        </p>
+        <p>
+            Aplikasi ini dikembangkan untuk mendukung manajemen waktu personal, mengurangi stres akibat perencanaan yang buruk, dan meningkatkan kualitas hidup sehari-hari.
+            Semuanya dalam satu tampilan yang ramah pengguna.
+        </p>
+
+        <div class="team-section">
+            <h2><i class="fas fa-code"></i> Tim Pengembang</h2>
+            <div class="team-member">
+                <p><i class="fas fa-user"></i> Devit Saputra (Frontend & AI Integration)</p>
+                <p><i class="fas fa-envelope"></i> devrafaezya23@gmail.com</p>
+            </div>
+            <div class="team-member">
+                <p><i class="fas fa-user"></i> Devit Saputra (Backend & Data)</p>
+                <p><i class="fas fa-envelope"></i> devrafaezya23@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | HariMaksimal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f8;
+            padding: 20px;
+        }
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #27ae60;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            margin: 10px 0;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .card a {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            background-color: #27ae60;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1>HariMaksimal</h1>
+        <p>Tingkatkan produktivitas dan kesehatanmu</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="card">
+            <i class="fas fa-bolt"></i>
+            <h3>🔮 Produktivitas</h3>
+            <p>Hitung seberapa produktif harimu berdasarkan pola kerja dan stres.</p>
+            <a href="/index">Mulai Prediksi</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-apple-alt"></i>
+            <h3>🍽️ Pola Makan Sehat</h3>
+            <p>Rekomendasi makanan bergizi berdasarkan aktivitas dan waktu makanmu.</p>
+            <a href="/food">Cek Makanan</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-calendar-alt"></i>
+            <h3>🤖 Bikin Jadwal Harian</h3>
+            <p>AI bantu atur waktu kamu dengan jadwal harian yang seimbang.</p>
+            <a href="/jadwal">Buat Jadwal</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-chart-line"></i>
+            <h3>📈 Statistik Harian</h3>
+            <p>Lihat perkembangan produktivitas dan pola hidup kamu setiap hari.</p>
+            <a href="/statistik">Lihat Statistik</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-users"></i>
+            <h3>👤 Tentang & Tim</h3>
+            <p>Kenalan sama tim pengembang dan cara kerja sistem kami.</p>
+            <a href="/about">Lihat Selengkapnya</a>
+        </div>
+    </div>
+</body>
+</html>
