@@ -48,15 +48,14 @@ hari-maksimal/
    ```bash
    git clone https://github.com/devit2003/APLIKASI-ASISTEN-HARIAN-BERBASIS-SISTEM-PAKAR-UNTUK-PERENCANAAN-AKTIVITAS-DAN-POLA-MAKAN-SEHAT
    cd hari-maksimal
-2.Install dependencies:
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txtl
+3. **alankan Flask App:**
+   ```bash
+   python app.py
 
-pip install -r requirements.txt
-
-3;Jalankan Flask App:
-
-python app.py
-
-3.Buka browser dan akses:
+4.Buka browser dan akses:
 
 http://127.0.0.1:5000/
 
