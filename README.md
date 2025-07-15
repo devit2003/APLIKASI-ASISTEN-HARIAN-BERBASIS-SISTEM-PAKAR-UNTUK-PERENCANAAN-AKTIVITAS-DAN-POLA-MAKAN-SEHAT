@@ -46,7 +46,7 @@ hari-maksimal/
 
 1. **Clone repo ini:**
    ```bash
-   git clone https://github.com/devit2003/APLIKASI-ASISTEN-HARIAN-BERBASIS-SISTEM-PAKAR-UNTUK-PERENCANAAN-AKTIVITAS-DAN-POLA-MAKAN-SEHAT
+   git clone https://github.com/devit2003/APLIKASI-ASISTEN-HARIAN-BERBASIS-SISTEM-PAKAR-UNTUK-PERENCANAAN-AKTIVITAS-DAN-POLA-MAKAN-SEHAT.git
    cd hari-maksimal
 2. **Install dependencies:**
    ```bash
